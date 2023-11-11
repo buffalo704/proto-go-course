@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 
 	"google.golang.org/protobuf/proto"
 )
@@ -15,7 +15,7 @@ func writeToFile(fname string, pb proto.Message) error {
 		return err
 	}
 
-	if err = ioutil.WriteFile(fname, out, 0644); err != nil {
+	if err = os.WriteFile(fname, out, 0644); err != nil {
 		log.Fatalln("Can't write to file", err)
 		return err
 	}
@@ -25,7 +25,7 @@ func writeToFile(fname string, pb proto.Message) error {
 }
 
 func readFromFile(fname string, pb proto.Message) error {
-	in, err := ioutil.ReadFile(fname)
+	in, err := os.ReadFile(fname)
 	if err != nil {
 		log.Fatalln("Can't read from file", err)
 		return err
